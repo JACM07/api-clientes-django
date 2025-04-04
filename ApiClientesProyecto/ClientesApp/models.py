@@ -6,4 +6,4 @@ class Cliente(models.Model):#bd:registroClientes, tabla:clientesapp_cliente
     nombre=models.CharField(max_length=250)#null=False
     correo=models.CharField(max_length=100)
     numeroTelefono=models.CharField(max_length=100)
-    edadc=models.IntegerField()
+    edad=models.IntegerField()

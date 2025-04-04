@@ -3,10 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    <link href="{% static 'img/icono-registro.png' %}" rel="icon"/>
     <title>Registro Clientes</title>
 </head>
 <body>
-    <h1>Registrar Cliente:</h1>
+    <h1>Introduce los datos del cliente a registrar:</h1>
+
+    <form method="post" autocomplete="off">
+        <!--El id del cliente se generará automáticamente-->
+        <!--Nombre cliente-->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" maxlength="50" placeholder="José Castro" required>
+
+        <!--Correo electronico cliente-->
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" maxlength="50" placeholder="ejemplo@mail.com" required>
+
+        <!--Numero de telefono cliente-->
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono"  pattern="[0-9]{10}" placeholder="1234567890" required>
+
+        <!--Edad cliente-->
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" maxlength="3" placeholder="21" required>
+
+        <button type="button" class="btn btn-success">Guardar</button><!--Poner oncklick-->
+        <button type="reset">Restablecer</button><!--Reiniciar formulario-->
+    </form>
     
 </body>
 </html>
