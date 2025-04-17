@@ -64,12 +64,25 @@ def cliente(request, idCliente):  #'clientes/<int:idCliente>/'   PONER '/' AL FI
     elif request.method == 'DELETE':
         cliente.delete()
         return JsonResponse({'message': 'Cliente eliminado'}, status=204)
+    
+    elif request.method == 'PATCH': #No se necesita el objeto Json completo, con que tenga un campo para actualizar basta
+        try:
+            data=json.loads(request.body)#se lee el json con el/los datos a actualizar
+            if 'nombre' in data:
+                cliente.nombre = data['nombre']
+            if 'correo' in data:
+                cliente.correo = data['correo']
+            if 'numeroTelefono' in data:
+                cliente.numeroTelefono = data['numeroTelefono']
+            if 'edad' in data:
+                cliente.edad = data['edad']
+
+            cliente.save()
+            return JsonResponse(model_to_dict(cliente), status=200)
+        
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'JSON inválido'}, status=400)
 
     else:
-        return HttpResponseNotAllowed(['GET', 'PUT', 'DELETE'])
+        return HttpResponseNotAllowed(['GET', 'PUT', 'PATCH' ,'DELETE'])
 
-
-
-
-#REGISTRAR VISTAS NUEVAS DE ABAJO
-#PATCH? = partial_update un cliente
