@@ -11,6 +11,9 @@ import json
 def registroClientes(request):#Vista principal para mostrar pagina
     return render(request,"registrarCliente.html")
 
+def mostrarClientes(request):#vista para ver tabla de todos los clientes
+    return render(request,"mostrarClientes.html")
+
 #Crear peticiones get,post,put,delete
 
 @csrf_exempt #'clientes/'   PARA GET TODOS LOS CLIENTES Y POST UN CLIENTE
