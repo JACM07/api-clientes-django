@@ -10,9 +10,7 @@
     <title>Registro Clientes</title>
 </head>
 <body>
-    <br>
     <h1 class="titulo">Introduce los datos del cliente a registrar:</h1>
-
 
     <div class="formulario">
         <form method="post" autocomplete="off" class="row g-3">
@@ -41,12 +39,15 @@
                 <input class="form-control" type="number" id="edad" name="edad" maxlength="3" placeholder="21" required>
             </div>
 
-            <div class="d-grid gap-2 col-6 mx-auto">
-                <button type="button" class="btn btn-primary">Guardar</button><!--Poner oncklick-->
+            <div class="d-grid gap-2 col-md-3 mx-auto">
+                <button type="button" class="btn btn-success">Guardar</button><!--Poner oncklick-->
                 <button type="reset" class="btn btn-info">Restablecer</button><br/><!--Reiniciar formulario-->
+                <a href="/tabla-clientes" class="btn btn-primary">Clientes Registrados</a> 
             </div>
         </form>
-    </div>
-    
+    </div> 
+
+{% load static %}
+<script src="{% static 'JavaScript/registro.js' %}"></script>
 </body>
 </html>

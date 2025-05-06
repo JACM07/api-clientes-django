@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    <link href="{% static 'img/icono-registro.png' %}" rel="icon"/>
     <title>Todos los clientes</title>
 </head>
 <body>
-    <h1>Tabla de todos los clientes</h1>
+    
+    <main>
+        <h1 class="titulo">Clientes Registrados</h1>
+        <form>
+            <div class="mb-3 mt-3"><!--Filtrar por Id-->
+                <label for="cliente-buscar" class="form-label" style="color: black;">Introduce el ID del cliente a buscar:</label>
+                <input type="text" class="form-control" id="cliente-buscar" name="cliente-buscar">
+            </div>
+            <button type="button" class="btn btn-info" onclick="">Buscar por Id</button><!--onclick = llamar funcion de js-->
+            <button type="button" class="btn btn-secondary" onclick="llenarTabla(url)">Limpiar filtro</button><!--onclick = llenar tabla con todos los clientes otra vez-->
+        </form><br/>
+        
+        <table id="tabla-clientes" class="table table-bordered table-striped-columns">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Número de telefono</th>
+                    <th>Edad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>José</td>
+                    <td>jose@gmail.com</td>
+                    <td>123456789</td>
+                    <td>21</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Antonio</td>
+                    <td>antonio@gmail.com</td>
+                    <td>987654321</td>
+                    <td>22</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="/" class="btn btn-success">Registrar nuevo cliente</a>
+    </main>
+
 </body>
 </html>
