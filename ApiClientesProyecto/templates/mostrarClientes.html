@@ -18,7 +18,7 @@
                 <label for="cliente-buscar" class="form-label" style="color: black;">Introduce el ID del cliente a buscar:</label>
                 <input type="text" class="form-control" id="cliente-buscar" name="cliente-buscar">
             </div>
-            <button type="button" class="btn btn-info" onclick="">Buscar por Id</button><!--onclick = llamar funcion de js-->
+            <button type="button" class="btn btn-info" onclick="encontrarCliente('cliente-buscar','/clientes/')">Buscar por Id</button><!--onclick = llamar funcion de js-->
             <button type="button" class="btn btn-secondary" onclick="llenarTabla(url)">Limpiar filtro</button><!--onclick = llenar tabla con todos los clientes otra vez-->
         </form><br/>
         
@@ -30,6 +30,7 @@
                     <th>Correo</th>
                     <th>Número de telefono</th>
                     <th>Edad</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,5 +55,7 @@
         <a href="/" class="btn btn-success">Registrar nuevo cliente</a>
     </main>
 
+{% load static %}
+<script src="{% static 'JavaScript/mostrarClientes.js' %}"></script>
 </body>
 </html>
