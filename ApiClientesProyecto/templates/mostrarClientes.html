@@ -16,9 +16,9 @@
         <form>
             <div class="mb-3 mt-3"><!--Filtrar por Id-->
                 <label for="cliente-buscar" class="form-label" style="color: black;">Introduce el ID del cliente a buscar:</label>
-                <input type="text" class="form-control" id="cliente-buscar" name="cliente-buscar">
+                <input type="number" class="form-control" id="cliente-buscar" name="cliente-buscar">
             </div>
-            <button type="button" class="btn btn-info" onclick="encontrarCliente('cliente-buscar','/clientes/')">Buscar por Id</button><!--onclick = llamar funcion de js-->
+            <button type="button" class="btn btn-info" onclick="encontrarCliente('cliente-buscar')">Buscar por Id</button>
             <button type="button" class="btn btn-secondary" onclick="llenarTabla(url)">Limpiar filtro</button><!--onclick = llenar tabla con todos los clientes otra vez-->
         </form><br/>
         

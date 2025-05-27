@@ -1,3 +1,4 @@
+//TODO CORREGIR ERRORES en EDITAR
 
 const url="http://127.0.0.1:8000/clientes/";
 
@@ -42,6 +43,7 @@ async function llenarTabla(url){
         console.error('Hubo un problema ', error);
         alert('No se pudieron cargar los clientes registrados. Intenta nuevamente más tarde.');
     }
+    document.getElementById("cliente-buscar").value="";
 }
 
 //llamada de la función para llenar la tabla
@@ -151,11 +153,46 @@ function guardarCliente(idBoton){
         });
 }
 
-function encontrarCliente(idInput, ruta) {
+function encontrarCliente(idInput) {
     limpiarFilasTabla();
     const id = document.getElementById(idInput).value;
-    llenarTabla(`http://127.0.0.1:8000${ruta}${id}/`);
+    
+    const urlCliente = `http://127.0.0.1:8000/clientes/${id}/`;
+
+    fetch(urlCliente)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Cliente no encontrado.");
+            }
+            return response.json();
+        })
+        .then(cliente => {
+            const tableBody = document.querySelector("#tabla-clientes tbody");
+
+            const row = document.createElement("tr");
+            const idNumber = cliente.idCliente;
+
+            row.innerHTML = `
+                <td class="id">${idNumber}</td>
+                <td contenteditable="false">${cliente.nombre}</td>
+                <td contenteditable="false">${cliente.correo}</td>
+                <td contenteditable="false">${cliente.numeroTelefono}</td>
+                <td contenteditable="false">${cliente.edad}</td> 
+                <td>
+                    <button type="button" class="btn btn-info btn-sm" onclick="editarCliente(${idNumber})">Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm" onclick="botonEliminarCliente(${idNumber})">Eliminar</button>
+                </td>
+            `;
+            row.setAttribute("id", idNumber);
+            tableBody.appendChild(row);
+        })
+        .catch(error => {
+            console.error(error);
+            alert("No se encontró el cliente con el ID "+id);
+        });
 }
+
+
 
 function botonEliminarCliente(id) {
     if (confirm("Estas seguro de eliminar al cliente con el id: "+id)) {
@@ -167,7 +204,7 @@ function botonEliminarCliente(id) {
 }
 
 function eliminarCliente(id){
-    const urlEliminar=`http://127.0.0.1:8000/clientes/${id}`;
+    const urlEliminar=`http://127.0.0.1:8000/clientes/${id}/`;
         fetch(urlEliminar, {
         method: 'DELETE',
         headers: {
