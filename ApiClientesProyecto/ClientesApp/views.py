@@ -14,8 +14,8 @@ def registroClientes(request):#Vista principal para mostrar pagina
 def mostrarClientes(request):#vista para ver tabla de todos los clientes
     return render(request,"mostrarClientes.html")
 
-#Crear peticiones get,post,put,delete
 
+#Peticiones get,post,put,delete
 @csrf_exempt #'clientes/'   PARA GET TODOS LOS CLIENTES Y POST UN CLIENTE
 def clientes(request):
     if request.method == 'GET':

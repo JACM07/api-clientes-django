@@ -1,4 +1,3 @@
-//TODO CORREGIR ERRORES en EDITAR
 
 const url="http://127.0.0.1:8000/clientes/";
 
@@ -61,13 +60,10 @@ function editarCliente(idboton){
     let numeroTelefono = row.children.item(3);
     let edad = row.children.item(4);
     
-
-    //cambiar la propiedad content editable, excepto id y rfcProveedor
     nombre.setAttribute("contenteditable","true");
     correo.setAttribute("contenteditable","true");
     numeroTelefono.setAttribute("contenteditable","true");
     edad.setAttribute("contenteditable","true");
-    
 
     //poner el cursor sobre la celda 1
     nombre.focus();
@@ -81,8 +77,8 @@ function editarCliente(idboton){
     botonEditar.setAttribute("class","btn btn-success");
     botonEditar.innerHTML = "Guardar";
 
-    //al presionar el botón de guardar mandar llamar al metodo guardarCliente(con los datos de la fila)
-    botonEditar.setAttribute("onClick", `guardarCliente('${idboton}')`);
+    //mandar llamar al metodo guardarCliente(con los datos de la fila)
+    botonEditar.setAttribute("onClick", `guardarCliente(${idboton})`);
 }
 
 function guardarCliente(idBoton){
@@ -96,17 +92,19 @@ function guardarCliente(idBoton){
     
 
     //Validaciones
-    if (!varNombre.innerHTML.trim()) {
+    if (!varNombre.innerText.trim()) {
         alert("El nombre no puede estar vacío.");
         return;
     }
-    if (!varCorreo.innerHTML.trim()) {
+
+    if (varCorreo.innerText.trim() === "") {
         alert("El correo no puede estar vacío.");
         return;
     }
+
     if (!/^\d{10}$/.test(varNumeroTelefono.innerHTML.trim())) {
-    alert("El número de teléfono debe contener exactamente 10 dígitos.");
-    return;
+        alert("El número de teléfono debe contener exactamente 10 dígitos.");
+        return;
     }
 
     if (!/^\d+$/.test(varEdad.innerHTML.trim()) || varEdad.innerHTML <= 0 || varEdad.innerHTML > 120) {
@@ -115,8 +113,7 @@ function guardarCliente(idBoton){
     }
 
     
-
-    //objeto que se edito
+    //objeto que se editó
     const clienteActualizado={
         nombre : varNombre.innerHTML,
         correo : varCorreo.innerHTML,
@@ -125,9 +122,8 @@ function guardarCliente(idBoton){
         
     };
 
-    const apiUrl=`http://127.0.0.1:8000/clientes/${varId.innerHTML}`; //CHECAR PARA VER SI ES CORRECTO
+    const apiUrl=`http://127.0.0.1:8000/clientes/${varId.innerHTML}/`; 
 
-    // Configure the request
     const requestOptions = {
         method: 'PUT',
         headers: {
@@ -191,7 +187,6 @@ function encontrarCliente(idInput) {
             alert("No se encontró el cliente con el ID "+id);
         });
 }
-
 
 
 function botonEliminarCliente(id) {

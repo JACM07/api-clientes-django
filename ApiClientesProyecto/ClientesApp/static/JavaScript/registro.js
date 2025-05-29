@@ -13,7 +13,6 @@ function registrarCliente(){
     const formTelefonoCliente=document.getElementById("telefono").value;
     const formEdadCliente=document.getElementById("edad").value;
 
-
     //Validaciones
     if(!formNombreCliente || !formCorreoCliente || !formTelefonoCliente || !formEdadCliente){
         alert("Completa todos los campos requeridos");
